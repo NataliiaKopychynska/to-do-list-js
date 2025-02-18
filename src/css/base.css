@@ -7,7 +7,7 @@
   font-weight: 400;
 
   color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+  background-color: #f7f7f7;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,7 +16,24 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; /* Виправлено */
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
 body {
+  font-family: 'Kanit', sans-serif;
+  font-weight: 500;
   display: flex;
   flex-direction: column;
   min-width: 100vw;
@@ -29,4 +46,9 @@ main {
 }
 main:has(.back-link) {
   text-align: center;
+}
+
+input {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
 }

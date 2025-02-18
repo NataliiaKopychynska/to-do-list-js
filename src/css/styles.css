@@ -13,6 +13,11 @@
 /* Sections style */
 @import url('./header.css');
 @import url('./vite-promo.css');
-@import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+/* Section task list */
+@import url('./part-list/main.css');
+@import url('./part-list/empty-section.css');
+@import url('./part-list/task-list.css');
+@import url('./part-list/modal-new.css');

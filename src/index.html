@@ -2,18 +2,146 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg" href="./public/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>To do list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
+    <load
+      class="fill-icon"
+      src="./partials/header.html"
+      icon-path="img/sprite.svg#logo"
+    />
 
     <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
+      <section class="todo-list">
+        <h1 class="title">Todo list</h1>
+        <div class="container-serch">
+          <input class="input" type="text" placeholder="Search note..." />
+          <div class="select-wrapper">
+            <select class="btn btn-all">
+              <option value="all">All</option>
+              <option value="complete">Complete</option>
+              <option value="incomplete">Incomplete</option>
+            </select>
+            <svg class="icon-all" width="9" height="5">
+              <use
+                class="icon-all-svg"
+                href="./img/symbol-defs.svg#icon-arrow-down"
+              ></use>
+            </svg>
+          </div>
+
+          <button class="btn">
+            <svg class="icon" width="22" height="22">
+              <use href="./img/symbol-defs.svg#icon-moon"></use>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Tasks -->
+        <ul class="task-list">
+          <!-- <li class="task-container">
+            <div class="checkbox-container">
+              <input
+                type="checkbox"
+                name="custom-checkbox"
+                id="custom-checkbox"
+                class="input-checkbox visually-hidden"
+              />
+              <label for="custom-checkbox" class="checkbox-label">
+                <span>
+                  <svg class="svg-chacckbox">
+                    <use href="./img/symbol-defs.svg#icon-Rectangle-18"></use>
+                  </svg>
+                </span>
+                text
+              </label>
+            </div>
+            <div class="btn-container">
+              <button class="btn-list btn-edid">
+                <svg class="svg-list">
+                  <use href="./img/symbol-defs.svg#icon-edit"></use>
+                </svg></button
+              ><button class="btn-list btn-delete">
+                <svg class="svg-list">
+                  <use href="./img/symbol-defs.svg#icon-delete"></use>
+                </svg>
+              </button>
+            </div>
+          </li> -->
+        </ul>
+        <!-- Empty list -->
+        <div class="empty-element">
+          <svg class="empty-svg">
+            <use href="./img/symbol-defs.svg#icon-empty"></use>
+          </svg>
+          <h3 class="empty-text">Empty...</h3>
+        </div>
+        <button class="add-btn">
+          <svg class="add-svg">
+            <use href="./img/symbol-defs.svg#icon-add"></use>
+          </svg>
+        </button>
+      </section>
+
+      <!-- ADD Modal window -->
+
+      <div class="overflow-modal add-modal hidden">
+        <div class="window-modal">
+          <h1 class="title">New Note</h1>
+          <input
+            type="text "
+            class="input input-modal input-modal-add"
+            placeholder="Input your note..."
+          />
+          <div class="btn-container">
+            <button class="btn border-btn cancel">Cancel</button
+            ><button class="btn apply">Apply</button>
+          </div>
+        </div>
+      </div>
+      <!-- EDIT Modal window -->
+
+      <div class="overflow-modal edit-modal hidden">
+        <div class="window-modal">
+          <h1 class="title">Edit Note</h1>
+          <input
+            type="text "
+            class="input input-modal input-modal-edit"
+            placeholder="Input your note..."
+          />
+          <div class="btn-container">
+            <button class="btn border-btn cancel-edit">Cancel</button
+            ><button class="btn apply-changes">Apply</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DELETE Modal window -->
+      <div class="overflow-modal delete-modal hidden">
+        <div class="window-modal">
+          <h1 class="title">Do you have delete this Note?</h1>
+
+          <div class="btn-container">
+            <button class="btn border-btn delete-yes">Yes</button
+            ><button class="btn delete-no">No</button>
+          </div>
+        </div>
+      </div>
     </main>
 
     <load src="./partials/footer.html" />

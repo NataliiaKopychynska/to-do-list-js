@@ -1,0 +1,14 @@
+.empty-element {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.empty-svg {
+  width: 221px;
+  height: 174px;
+}
+.empty-text {
+  margin-top: 20px;
+}

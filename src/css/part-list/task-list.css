@@ -1,0 +1,95 @@
+.task-list {
+}
+.task-container {
+  width: 520px;
+  margin: 0 auto;
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+}
+/*  --------------- */
+.checkbox-container {
+  cursor: pointer;
+  height: 32px;
+}
+
+.checkbox-container ::after {
+  height: 1px;
+  width: 100%;
+  background-color: #d4d2f9;
+}
+
+.input-checkbox {
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #252525;
+  cursor: pointer;
+}
+.input-checkbox:checked + .checkbox-label {
+  text-decoration: line-through;
+  color: #8e8e8e;
+}
+.checkbox-label span {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  border: 1px solid #6c63ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.svg-chacckbox {
+  position: absolute;
+  top: 0;
+
+  /* padding: 8px; */
+  width: 14px;
+  height: 22px;
+  margin: 0 auto;
+  padding: 0;
+  fill: #f7f7f7;
+
+  /* color: #f7f7f7; */
+}
+
+.input-checkbox:checked + .checkbox-label span {
+  background-color: #6c63ff;
+}
+
+/* ------------------ */
+
+.btn-container-add-delete {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.btn-list {
+  width: 18px;
+  height: 18px;
+  border: none;
+  background-color: transparent;
+}
+.btn-edid:hover .svg-list {
+  stroke: #6c63ff;
+}
+
+.btn-delete:hover .svg-list {
+  stroke: #e50000;
+}
+
+.svg-list {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: #888888;
+}

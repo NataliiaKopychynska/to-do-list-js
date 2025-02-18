@@ -1,0 +1,44 @@
+.overflow-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(37, 37, 37, 0.7);
+}
+.window-modal {
+  box-sizing: border-box;
+  border-radius: 16px;
+  width: 500px;
+  padding: 24px 30px;
+  /* height: 289px; */
+  background: #f7f7f7;
+}
+
+.input-modal {
+  margin-top: 24px;
+  width: 440px;
+}
+.btn-container {
+  margin-top: 128px;
+  width: 440px;
+  display: flex;
+  justify-content: space-between;
+}
+.border-btn {
+  border: 1px solid #6c63ff;
+  background-color: transparent;
+  color: #6c63ff;
+  box-shadow: none;
+
+  &:hover {
+    background-color: rgb(182, 2, 2);
+    color: #f7f7f7;
+    border-color: rgb(182, 2, 2);
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,112 @@
+.todo-list {
+  margin-top: 40px;
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 26px;
+  color: #252525;
+  text-align: center;
+}
+.container-serch {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+}
+.input {
+  box-sizing: border-box;
+  border: 1px solid #6c63ff;
+  border-radius: 5px;
+  padding: 8px 16px;
+  width: 595px;
+  height: 38px;
+  padding: 11px 16px;
+
+  font-size: 16px;
+  line-height: 16px;
+  color: #6c63ff;
+  background-color: #f7f7f7;
+
+  &:active {
+    box-shadow: 0 0 0 0 #000;
+    color: #6c63ff;
+  }
+  &::placeholder {
+    color: #c3c1e5;
+  }
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 38px;
+  background: #6c63ff;
+  padding: 10px;
+
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: #f7f7f7;
+  font-size: 18px;
+  box-shadow: 0 0 4px 0 #6c63ff;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-all {
+  padding: 10px 15px;
+  padding-right: 28px;
+  width: 100%;
+  appearance: none;
+}
+.icon-all {
+  position: absolute;
+  z-index: 99;
+  top: 50%;
+  right: 10px;
+}
+.icon-all-svg {
+  stroke: #f7f7f7;
+}
+
+.icon {
+  fill: #f7f7f7;
+  padding: 0 auto;
+}
+
+.add-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 14%;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 0 auto;
+  background-color: #6c63ff;
+  border: none;
+  box-shadow: 0 0 4px 0 #6c63ff;
+  /* padding: 13px; */
+}
+.btn:hover {
+  /* border: 2px solid #6c63ff; */
+  background-color: #534cc2;
+  box-shadow: 0 0 4px 0 #6c63ff;
+}
+.add-btn:hover {
+  /* box-sizing: content-box; */
+  border: 2px solid #6c63ff;
+  background-color: #534cc2;
+  box-shadow: 0 0 4px 0 #6c63ff;
+}
+.add-svg {
+  width: 24px;
+  height: 24px;
+  fill: #f7f7f7;
+}
