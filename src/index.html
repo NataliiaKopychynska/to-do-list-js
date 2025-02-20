@@ -19,7 +19,7 @@
     />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  <body>
+  <body class="body body-night">
     <load
       class="fill-icon"
       src="./partials/header.html"
@@ -30,7 +30,11 @@
       <section class="todo-list">
         <h1 class="title">Todo list</h1>
         <div class="container-serch">
-          <input class="input" type="text" placeholder="Search note..." />
+          <input
+            class="input search-input"
+            type="text"
+            placeholder="Search note..."
+          />
           <div class="select-wrapper">
             <select class="btn btn-all">
               <option value="all">All</option>
@@ -45,15 +49,19 @@
             </svg>
           </div>
 
-          <button class="btn">
+          <button class="btn mode-toggle">
             <svg class="icon" width="22" height="22">
-              <use href="./img/symbol-defs.svg#icon-moon"></use>
+              <use
+                class="toggle-icon"
+                href="./img/symbol-defs.svg#icon-moon"
+              ></use>
             </svg>
           </button>
         </div>
 
         <!-- Tasks -->
         <ul class="task-list">
+          <!-- ! <label for="custom-checkbox" class="checkbox-label"> <svg class="svg-chacckbox"> -->
           <!-- <li class="task-container">
             <div class="checkbox-container">
               <input
@@ -62,9 +70,10 @@
                 id="custom-checkbox"
                 class="input-checkbox visually-hidden"
               />
+
               <label for="custom-checkbox" class="checkbox-label">
                 <span>
-                  <svg class="svg-chacckbox">
+                  <svg class="svg-chacckbox svg-night">
                     <use href="./img/symbol-defs.svg#icon-Rectangle-18"></use>
                   </svg>
                 </span>
@@ -101,7 +110,9 @@
       <!-- ADD Modal window -->
 
       <div class="overflow-modal add-modal hidden">
+        <!-- ! -->
         <div class="window-modal">
+          <!-- ! -->
           <h1 class="title">New Note</h1>
           <input
             type="text "

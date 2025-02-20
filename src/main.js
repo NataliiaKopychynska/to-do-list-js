@@ -1,4 +1,6 @@
 const addBtn = document.querySelector('.add-btn');
+const modeToggle = document.querySelector('.mode-toggle');
+const svgUse = document.querySelector('.toggle-icon');
 
 const modalAdd = document.querySelector('.add-modal');
 const inputModal = document.querySelector('.input-modal-add');
@@ -16,14 +18,27 @@ const cancelTaskDelete = document.querySelector('.delete-no');
 
 const emptyImg = document.querySelector('.empty-element');
 const taskList = document.querySelector('.task-list');
-// const checkboxItem = document.querySelector('.input-checkbox ');
 
+const searchInput = document.querySelector('.search-input');
 const selectBtn = document.querySelector('.btn-all');
+const body = document.body;
+const label = document.querySelector('.checkbox-label');
+const svgCheckbox = document.querySelector('.svg-chacckbox');
+const modalWindows = document.querySelectorAll('.window-modal');
+const tittleWindow = document.querySelectorAll('.title');
 
 document.addEventListener('DOMContentLoaded', () => {
   const savedFilter = localStorage.getItem('filter') || 'all';
   selectBtn.value = savedFilter;
   filterTasks(savedFilter);
+
+  if (localStorage.getItem('theme') === 'dark') {
+    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
+    darkTheme();
+  } else {
+    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
+    lightTheme();
+  }
 });
 
 let tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
@@ -35,6 +50,20 @@ if (tasksArray.length > 0) {
 
 addBtn.addEventListener('click', () => {
   modalAdd.classList.remove('hidden');
+});
+
+modeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-theme');
+
+  if (document.body.classList.contains('dark-theme')) {
+    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
+    localStorage.setItem('theme', 'dark');
+    darkTheme();
+  } else {
+    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
+    localStorage.setItem('theme', 'light');
+    lightTheme();
+  }
 });
 
 applyTaskAdd.addEventListener('click', () => {
@@ -78,11 +107,10 @@ taskList.addEventListener('click', e => {
     deleteTask(taskId);
   }
 
-  if (e.target.classList.contains('input-checkbox')) {
-    const taskItem = e.target.closest('.task-container'); // Знаходимо батьківський елемент
-    const taskId = Number(taskItem.dataset.id); // Отримуємо ID завдання
+  if (e.target.closest('.checkbox-container')) {
+    const taskId = Number(taskItem.dataset.id);
 
-    checkedToggle(taskId, e.target);
+    checkedToggle(taskId);
   }
 });
 
@@ -94,7 +122,24 @@ selectBtn.addEventListener('change', e => {
   filterTasks(selectedValue);
 });
 
-// Функція фільтрації
+searchInput.addEventListener('input', e => {
+  let searchValue = e.target.value.toLowerCase();
+
+  const filteredTask = tasksArray.filter(item => {
+    console.log(searchValue);
+
+    if (item.text.toLowerCase().includes(searchValue)) {
+      return item;
+    }
+  });
+  // console.log(filteredTask);
+  if (searchValue.trim() === '') {
+    createElement(tasksArray, taskList);
+  } else {
+    createElement(filteredTask, taskList);
+  }
+});
+
 function filterTasks(filter) {
   let filteredTask;
   switch (filter) {
@@ -120,18 +165,18 @@ function createElement(tasksArray, taskList) {
   tasksArray.forEach(item => {
     taskList.insertAdjacentHTML(
       'beforeend',
-      `<li class="task-container" data-id=${item.id}>
+      `<li class="task-container " data-id=${item.id}>
             <div class="checkbox-container">
               <input
                 type="checkbox"
                 name="custom-checkbox"
-                id=${item.id}
+                id="custom-checkbox"
                 class="input-checkbox visually-hidden"
                 ${item.completed ? 'checked' : ''}
               />
-              <label for="custom-checkbox" class="checkbox-label">
+              <label for="custom-checkbox" class="checkbox-label checkbox-label-night">
                 <span>
-                  <svg class="svg-chacckbox">
+                  <svg class="svg-chacckbox svg-night">
                     <use href="./img/symbol-defs.svg#icon-Rectangle-18"></use>
                   </svg>
                 </span>
@@ -192,10 +237,34 @@ function deleteTask(taskId) {
   });
 }
 
-function checkedToggle(taskId, checkboxElement) {
+function checkedToggle(taskId) {
   const task = tasksArray.find(item => item.id === taskId);
 
-  task.completed = checkboxElement.checked;
+  task.completed = !task.completed;
+  // checkboxElement.checked;
 
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+  filterTasks('all');
+}
+
+function darkTheme() {
+  label?.classList.add('checkbox-label-night');
+  svgCheckbox?.classList.add('svg-night');
+  searchInput?.classList.add('input-night');
+  inputModal?.classList.add('input-night');
+  inputModalEdit?.classList.add('input-night');
+  modalWindows.forEach(modal => modal.classList.add('window-modal-night'));
+  tittleWindow.forEach(title => title.classList.add('title-night'));
+  body?.classList.add('body-night');
+}
+
+function lightTheme() {
+  label?.classList.remove('checkbox-label-night');
+  svgCheckbox?.classList.remove('svg-night');
+  searchInput?.classList.remove('input-night');
+  inputModal?.classList.remove('input-night');
+  inputModalEdit?.classList.remove('input-night');
+  modalWindows.forEach(modal => modal.classList.remove('window-modal-night'));
+  tittleWindow.forEach(title => title.classList.remove('title-night'));
+  body?.classList.remove('body-night');
 }
