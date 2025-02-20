@@ -18,9 +18,9 @@
       rel="stylesheet"
     />
     <script type="module" crossorigin src="/to-do-list-js/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/to-do-list-js/assets/index-CYO6GgZP.css">
+    <link rel="stylesheet" crossorigin href="/to-do-list-js/assets/index-BWKUPdqr.css">
   </head>
-  <body>
+  <body class="body body-night">
     <header class="header">
   <div class="container">
     <nav class="nav">
@@ -46,7 +46,11 @@
       <section class="todo-list">
         <h1 class="title">Todo list</h1>
         <div class="container-serch">
-          <input class="input" type="text" placeholder="Search note..." />
+          <input
+            class="input search-input"
+            type="text"
+            placeholder="Search note..."
+          />
           <div class="select-wrapper">
             <select class="btn btn-all">
               <option value="all">All</option>
@@ -56,20 +60,24 @@
             <svg class="icon-all" width="9" height="5">
               <use
                 class="icon-all-svg"
-                href="/to-do-list-js/assets/symbol-defs-rhqJuqEx.svg#icon-arrow-down"
+                href="/to-do-list-js/assets/symbol-defs-BZ1BJ_8H.svg#icon-arrow-down"
               ></use>
             </svg>
           </div>
 
-          <button class="btn">
+          <button class="btn mode-toggle">
             <svg class="icon" width="22" height="22">
-              <use href="/to-do-list-js/assets/symbol-defs-rhqJuqEx.svg#icon-moon"></use>
+              <use
+                class="toggle-icon"
+                href="/to-do-list-js/assets/symbol-defs-BZ1BJ_8H.svg#icon-moon"
+              ></use>
             </svg>
           </button>
         </div>
 
         <!-- Tasks -->
         <ul class="task-list">
+          <!-- ! <label for="custom-checkbox" class="checkbox-label"> <svg class="svg-chacckbox"> -->
           <!-- <li class="task-container">
             <div class="checkbox-container">
               <input
@@ -78,9 +86,10 @@
                 id="custom-checkbox"
                 class="input-checkbox visually-hidden"
               />
+
               <label for="custom-checkbox" class="checkbox-label">
                 <span>
-                  <svg class="svg-chacckbox">
+                  <svg class="svg-chacckbox svg-night">
                     <use href="./img/symbol-defs.svg#icon-Rectangle-18"></use>
                   </svg>
                 </span>
@@ -103,13 +112,13 @@
         <!-- Empty list -->
         <div class="empty-element">
           <svg class="empty-svg">
-            <use href="/to-do-list-js/assets/symbol-defs-rhqJuqEx.svg#icon-empty"></use>
+            <use href="/to-do-list-js/assets/symbol-defs-BZ1BJ_8H.svg#icon-empty"></use>
           </svg>
           <h3 class="empty-text">Empty...</h3>
         </div>
         <button class="add-btn">
           <svg class="add-svg">
-            <use href="/to-do-list-js/assets/symbol-defs-rhqJuqEx.svg#icon-add"></use>
+            <use href="/to-do-list-js/assets/symbol-defs-BZ1BJ_8H.svg#icon-add"></use>
           </svg>
         </button>
       </section>
@@ -117,7 +126,9 @@
       <!-- ADD Modal window -->
 
       <div class="overflow-modal add-modal hidden">
+        <!-- ! -->
         <div class="window-modal">
+          <!-- ! -->
           <h1 class="title">New Note</h1>
           <input
             type="text "
