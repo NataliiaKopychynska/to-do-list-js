@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
   filterTasks(savedFilter);
 
   if (localStorage.getItem('theme') === 'dark') {
-    svgUse.setAttribute('href', 'img/symbol-defs.svg#icon-sun');
+    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-sun');
     darkTheme();
   } else {
-    svgUse.setAttribute('href', 'img/symbol-defs.svg#icon-moon');
+    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-moon');
     lightTheme();
   }
 });
@@ -52,11 +52,11 @@ modeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-theme');
 
   if (document.body.classList.contains('dark-theme')) {
-    svgUse.setAttribute('href', 'img/symbol-defs.svg#icon-sun');
+    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-sun');
     localStorage.setItem('theme', 'dark');
     darkTheme();
   } else {
-    svgUse.setAttribute('href', 'img/symbol-defs.svg#icon-moon');
+    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-moon');
     localStorage.setItem('theme', 'light');
     lightTheme();
   }
@@ -165,7 +165,7 @@ function createElement(tasksArray, taskList) {
               <label for="custom-checkbox" class="checkbox-label">
                 <span>
                   <svg class="svg-chacckbox">
-                    <use href="./img/symbol-defs.svg#icon-Rectangle-18"></use>
+                    <use href="/img/symbol-defs.svg#icon-Rectangle-18"></use>
                   </svg>
                 </span>
                 <p class="item-tittle">${item.text}</p>
@@ -174,11 +174,11 @@ function createElement(tasksArray, taskList) {
             <div class="btn-container-add-delete">
               <button class="btn-list btn-edid">
                 <svg class="svg-list">
-                  <use href="./img/symbol-defs.svg#icon-edit"></use>
+                  <use href="/img/symbol-defs.svg#icon-edit"></use>
                 </svg></button
               ><button class="btn-list btn-delete">
                 <svg class="svg-list">
-                  <use href="./img/symbol-defs.svg#icon-delete"></use>
+                  <use href="/img/symbol-defs.svg#icon-delete"></use>
                 </svg>
               </button>
             </div>
