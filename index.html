@@ -18,26 +18,16 @@
       rel="stylesheet"
     />
     <script type="module" crossorigin src="/to-do-list-js/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/to-do-list-js/assets/index-BWKUPdqr.css">
+    <link rel="stylesheet" crossorigin href="/to-do-list-js/assets/index-BzS8-h-D.css">
   </head>
   <body class="body body-night">
     <header class="header">
   <div class="container">
-    <nav class="nav">
-      <a class="nav-logo" href="./index.html">
-        <svg class="nav-logo-icon">
-          <use href="../img/symbol-defs.svg#icon-logo"></use>
-        </svg>
-      </a>
-      <!-- <ul class="nav-list">
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-act}" href="./page-2.html">Page 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-curr}" href="./page-3.html">Page 3</a>
-        </li>
-      </ul> -->
-    </nav>
+    <a class="nav-logo" href="./index.html">
+      <svg class="nav-logo-icon">
+        <use href="../img/symbol-defs.svg#icon-logo"></use>
+      </svg>
+    </a>
   </div>
 </header>
 
@@ -76,39 +66,8 @@
         </div>
 
         <!-- Tasks -->
-        <ul class="task-list">
-          <!-- ! <label for="custom-checkbox" class="checkbox-label"> <svg class="svg-chacckbox"> -->
-          <!-- <li class="task-container">
-            <div class="checkbox-container">
-              <input
-                type="checkbox"
-                name="custom-checkbox"
-                id="custom-checkbox"
-                class="input-checkbox visually-hidden"
-              />
+        <ul class="task-list"></ul>
 
-              <label for="custom-checkbox" class="checkbox-label">
-                <span>
-                  <svg class="svg-chacckbox svg-night">
-                    <use href="./img/symbol-defs.svg#icon-Rectangle-18"></use>
-                  </svg>
-                </span>
-                text
-              </label>
-            </div>
-            <div class="btn-container">
-              <button class="btn-list btn-edid">
-                <svg class="svg-list">
-                  <use href="./img/symbol-defs.svg#icon-edit"></use>
-                </svg></button
-              ><button class="btn-list btn-delete">
-                <svg class="svg-list">
-                  <use href="./img/symbol-defs.svg#icon-delete"></use>
-                </svg>
-              </button>
-            </div>
-          </li> -->
-        </ul>
         <!-- Empty list -->
         <div class="empty-element">
           <svg class="empty-svg">
@@ -124,11 +83,8 @@
       </section>
 
       <!-- ADD Modal window -->
-
       <div class="overflow-modal add-modal hidden">
-        <!-- ! -->
         <div class="window-modal">
-          <!-- ! -->
           <h1 class="title">New Note</h1>
           <input
             type="text "
@@ -141,8 +97,8 @@
           </div>
         </div>
       </div>
-      <!-- EDIT Modal window -->
 
+      <!-- EDIT Modal window -->
       <div class="overflow-modal edit-modal hidden">
         <div class="window-modal">
           <h1 class="title">Edit Note</h1>
@@ -162,7 +118,6 @@
       <div class="overflow-modal delete-modal hidden">
         <div class="window-modal">
           <h1 class="title">Do you have delete this Note?</h1>
-
           <div class="btn-container">
             <button class="btn border-btn delete-yes">Yes</button
             ><button class="btn delete-no">No</button>
