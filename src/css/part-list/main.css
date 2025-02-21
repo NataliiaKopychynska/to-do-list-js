@@ -1,5 +1,5 @@
 .todo-list {
-  margin-top: 40px;
+  margin-top: 16px;
 }
 
 .title {
@@ -10,12 +10,14 @@
   text-align: center;
 }
 .container-serch {
-  margin-top: 20px;
+  margin: 16px 20px 0 20px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
 }
+
 .input {
   box-sizing: border-box;
   border: 1px solid #6c63ff;
@@ -38,6 +40,7 @@
     color: #c3c1e5;
   }
 }
+
 .btn {
   display: flex;
   justify-content: center;
@@ -51,7 +54,7 @@
   border-radius: 5px;
   text-transform: uppercase;
   color: #f7f7f7;
-  font-size: 18px;
+  font-size: 16px;
   box-shadow: 0 0 4px 0 #6c63ff;
 }
 
@@ -83,7 +86,7 @@
 
 .add-btn {
   position: fixed;
-  bottom: 80px;
+  bottom: 120px;
   right: 14%;
   border-radius: 50%;
   width: 50px;
@@ -94,6 +97,7 @@
   box-shadow: 0 0 4px 0 #6c63ff;
   /* padding: 13px; */
 }
+
 .btn:hover {
   /* border: 2px solid #6c63ff; */
   background-color: #534cc2;
@@ -109,4 +113,41 @@
   width: 24px;
   height: 24px;
   fill: #f7f7f7;
+}
+
+/* @media screen and (min-width: 320px) and(max-width:768px) {
+  .input {
+    width: 300px;
+    height: 38px;
+  }
+} */
+
+@media only screen and (min-width: 768px) {
+  .todo-list {
+    margin-top: 24px;
+  }
+  .container-serch {
+    flex-wrap: nowrap;
+  }
+  .add-btn {
+    bottom: 80px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .todo-list {
+    margin-top: 40px;
+  }
+
+  .container-serch {
+    margin-top: 20px;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .btn {
+    height: 38px;
+    padding: 10px;
+    font-size: 18px;
+  }
 }

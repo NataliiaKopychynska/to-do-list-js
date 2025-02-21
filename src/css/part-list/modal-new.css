@@ -10,22 +10,27 @@
   align-items: center;
   background-color: rgba(37, 37, 37, 0.7);
 }
+
 .window-modal {
   box-sizing: border-box;
   border-radius: 16px;
-  width: 500px;
-  padding: 24px 30px;
+  width: 280px;
+  padding: 20px 20px;
   /* height: 289px; */
   background: #f7f7f7;
 }
+.title {
+  font-size: 20px;
+}
 
 .input-modal {
-  margin-top: 24px;
-  width: 440px;
+  margin-top: 16px;
+  width: 240px;
 }
+
 .btn-container {
-  margin-top: 128px;
-  width: 440px;
+  margin-top: 32px;
+  width: 240px;
   display: flex;
   justify-content: space-between;
 }
@@ -40,5 +45,29 @@
     color: #f7f7f7;
     border-color: rgb(182, 2, 2);
     box-shadow: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .window-modal {
+    width: 500px;
+    padding: 24px 30px;
+  }
+  .input-modal {
+    margin-top: 24px;
+    width: 440px;
+  }
+  .btn-container {
+    margin-top: 128px;
+    width: 440px;
+  }
+  .title {
+    font-size: 24px;
+  }
+}
+/* Styles for Desktop devices */
+@media only screen and (min-width: 1200px) {
+  .title {
+    font-size: 26px;
   }
 }

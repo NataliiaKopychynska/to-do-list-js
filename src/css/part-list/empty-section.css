@@ -6,9 +6,23 @@
   flex-direction: column;
 }
 .empty-svg {
-  width: 221px;
-  height: 174px;
+  width: 150px;
+  height: 100px;
 }
 .empty-text {
   margin-top: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .empty-svg {
+    width: 180px;
+    height: 154px;
+  }
+}
+/* Styles for Desktop devices */
+@media only screen and (min-width: 1200px) {
+  .empty-svg {
+    width: 221px;
+    height: 174px;
+  }
 }

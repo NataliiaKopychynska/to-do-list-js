@@ -1,3 +1,7 @@
+const body = document.body;
+const searchInput = document.querySelector('.search-input');
+const selectBtn = document.querySelector('.btn-all');
+const tittle = document.querySelectorAll('.item-tittle');
 const addBtn = document.querySelector('.add-btn');
 const modeToggle = document.querySelector('.mode-toggle');
 const svgUse = document.querySelector('.toggle-icon');
@@ -18,14 +22,6 @@ const cancelTaskDelete = document.querySelector('.delete-no');
 
 const emptyImg = document.querySelector('.empty-element');
 const taskList = document.querySelector('.task-list');
-
-const searchInput = document.querySelector('.search-input');
-const selectBtn = document.querySelector('.btn-all');
-const body = document.body;
-const label = document.querySelector('.checkbox-label');
-const svgCheckbox = document.querySelector('.svg-chacckbox');
-const modalWindows = document.querySelectorAll('.window-modal');
-const tittleWindow = document.querySelectorAll('.title');
 
 document.addEventListener('DOMContentLoaded', () => {
   const savedFilter = localStorage.getItem('filter') || 'all';
@@ -68,10 +64,8 @@ modeToggle.addEventListener('click', () => {
 
 applyTaskAdd.addEventListener('click', () => {
   const inputValue = inputModal.value;
-
   const idItem = Date.now();
-  const checked = false;
-  tasksArray.push({ text: inputValue, id: idItem, completed: checked });
+  tasksArray.push({ text: inputValue, id: idItem, completed: false });
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
   console.log(tasksArray);
 
@@ -114,8 +108,6 @@ taskList.addEventListener('click', e => {
   }
 });
 
-// checkboxItem.addEventListener('click', e => {});
-
 selectBtn.addEventListener('change', e => {
   const selectedValue = e.target.value;
   localStorage.setItem('filter', selectedValue); // Зберігаємо фільтр у LS
@@ -156,10 +148,6 @@ function filterTasks(filter) {
   createElement(filteredTask, taskList);
 }
 
-const hiddenElement = e => {
-  e.classList.add('hidden');
-};
-
 function createElement(tasksArray, taskList) {
   taskList.innerHTML = '';
   tasksArray.forEach(item => {
@@ -174,9 +162,9 @@ function createElement(tasksArray, taskList) {
                 class="input-checkbox visually-hidden"
                 ${item.completed ? 'checked' : ''}
               />
-              <label for="custom-checkbox" class="checkbox-label checkbox-label-night">
+              <label for="custom-checkbox" class="checkbox-label">
                 <span>
-                  <svg class="svg-chacckbox svg-night">
+                  <svg class="svg-chacckbox">
                     <use href="./img/symbol-defs.svg#icon-Rectangle-18"></use>
                   </svg>
                 </span>
@@ -200,7 +188,6 @@ function createElement(tasksArray, taskList) {
 }
 
 function editTask(taskId) {
-  const tittle = document.querySelector('.item-tittle');
   modalEdit.classList.remove('hidden');
 
   const arrayMap = tasksArray.find(item => item.id === taskId);
@@ -237,34 +224,22 @@ function deleteTask(taskId) {
   });
 }
 
+const hiddenElement = e => {
+  e.classList.add('hidden');
+};
+
 function checkedToggle(taskId) {
   const task = tasksArray.find(item => item.id === taskId);
-
   task.completed = !task.completed;
-  // checkboxElement.checked;
 
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
   filterTasks('all');
 }
 
 function darkTheme() {
-  label?.classList.add('checkbox-label-night');
-  svgCheckbox?.classList.add('svg-night');
-  searchInput?.classList.add('input-night');
-  inputModal?.classList.add('input-night');
-  inputModalEdit?.classList.add('input-night');
-  modalWindows.forEach(modal => modal.classList.add('window-modal-night'));
-  tittleWindow.forEach(title => title.classList.add('title-night'));
-  body?.classList.add('body-night');
+  body.classList.add('body-night');
 }
 
 function lightTheme() {
-  label?.classList.remove('checkbox-label-night');
-  svgCheckbox?.classList.remove('svg-night');
-  searchInput?.classList.remove('input-night');
-  inputModal?.classList.remove('input-night');
-  inputModalEdit?.classList.remove('input-night');
-  modalWindows.forEach(modal => modal.classList.remove('window-modal-night'));
-  tittleWindow.forEach(title => title.classList.remove('title-night'));
-  body?.classList.remove('body-night');
+  body.classList.remove('body-night');
 }

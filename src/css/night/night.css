@@ -1,34 +1,25 @@
 .body-night {
   color: rgb(159, 159, 159);
   background-color: #252525;
-}
 
-.input-night {
-  background-color: transparent;
-  border-color: aliceblue;
-}
-
-.checkbox-label-night {
-  color: aliceblue;
-}
-
-.svg-night {
-  fill: #252525;
-}
-.input-checkbox:checked + .checkbox-label span .svg-night {
-  fill: aliceblue;
-}
-.input-checkbox:checked + .checkbox-label-night {
-  text-decoration: line-through;
-  color: #8e8e8e;
-}
-
-/* modal */
-.window-modal-night {
-  background: #252525;
-  border: 1px solid aliceblue;
-}
-
-.title-night {
-  color: aliceblue;
+  .todo-list > .title {
+    color: rgb(237, 237, 237);
+  }
+  .search-input {
+    background-color: transparent;
+    border-color: aliceblue;
+  }
+  input {
+    background-color: transparent;
+    border-color: #6c63ff;
+  }
+  .checkbox-label {
+    color: aliceblue;
+  }
+  .svg-chacckbox {
+    fill: #252525;
+  }
+  .input-checkbox:checked + .checkbox-label span .svg-chacckbox {
+    fill: #f7f7f7;
+  }
 }
