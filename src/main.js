@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
   filterTasks(savedFilter);
 
   if (localStorage.getItem('theme') === 'dark') {
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
+    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-sun');
     darkTheme();
   } else {
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
+    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-moon');
     lightTheme();
   }
 });
