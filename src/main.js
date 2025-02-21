@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
   filterTasks(savedFilter);
 
   if (localStorage.getItem('theme') === 'dark') {
-    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-sun');
+    svgUse.setAttribute('href', 'img/symbol-defs.svg#icon-sun');
     darkTheme();
   } else {
-    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-moon');
+    svgUse.setAttribute('href', 'img/symbol-defs.svg#icon-moon');
     lightTheme();
   }
 });
@@ -52,11 +52,11 @@ modeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-theme');
 
   if (document.body.classList.contains('dark-theme')) {
-    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-sun');
+    svgUse.setAttribute('href', 'img/symbol-defs.svg#icon-sun');
     localStorage.setItem('theme', 'dark');
     darkTheme();
   } else {
-    svgUse.setAttribute('href', '/img/symbol-defs.svg#icon-moon');
+    svgUse.setAttribute('href', 'img/symbol-defs.svg#icon-moon');
     localStorage.setItem('theme', 'light');
     lightTheme();
   }
