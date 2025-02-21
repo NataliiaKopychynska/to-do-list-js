@@ -192,7 +192,7 @@ function createElement(tasksArray, taskList) {
               <label for="custom-checkbox" class="checkbox-label">
                 <span>
                   <svg class="svg-chacckbox">
-                    <use href="/img/symbol-defs.svg#icon-Rectangle-18"></use>
+                    <use href="src/img/symbol-defs.svg#icon-Rectangle-18"></use>
                   </svg>
                 </span>
                 <p class="item-tittle">${item.text}</p>
@@ -205,7 +205,7 @@ function createElement(tasksArray, taskList) {
                 </svg></button
               ><button class="btn-list btn-delete">
                 <svg class="svg-list">
-                  <use href="/img/symbol-defs.svg#icon-delete"></use>
+                  <use href="src/img/symbol-defs.svg#icon-delete"></use>
                 </svg>
               </button>
             </div>
