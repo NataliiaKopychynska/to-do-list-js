@@ -201,11 +201,11 @@ function createElement(tasksArray, taskList) {
             <div class="btn-container-add-delete">
               <button class="btn-list btn-edid">
                 <svg class="svg-list">
-                  <use href="./to-do-list-js/src/img/symbol-defs.svg#icon-edit"></use>
+                  <use href="/to-do-list-js/src/img/symbol-defs.svg#icon-edit"></use>
                 </svg></button
               ><button class="btn-list btn-delete">
                 <svg class="svg-list">
-                  <use href="./to-do-list-js/src/img/symbol-defs.svg#icon-delete"></use>
+                  <use href="/to-do-list-js/src/img/symbol-defs.svg#icon-delete"></use>
                 </svg>
               </button>
             </div>
