@@ -23,16 +23,28 @@ const cancelTaskDelete = document.querySelector('.delete-no');
 const emptyImg = document.querySelector('.empty-element');
 const taskList = document.querySelector('.task-list');
 
+// console.log(window.location.href);
 document.addEventListener('DOMContentLoaded', () => {
   const savedFilter = localStorage.getItem('filter') || 'all';
   selectBtn.value = savedFilter;
   filterTasks(savedFilter);
 
   if (localStorage.getItem('theme') === 'dark') {
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
+    // svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
+    svgUse.setAttribute(
+      'href',
+      '/to-do-list-js/src/img/symbol-defs.svg#icon-sun'
+    );
+
+    // https://nataliiakopychynska.github.io/to-do-list-js/
     darkTheme();
   } else {
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
+    // svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
+    svgUse.setAttribute(
+      'href',
+      '/to-do-list-js/src/img/symbol-defs.svg#icon-moon'
+    );
+
     lightTheme();
   }
 });
@@ -52,11 +64,17 @@ modeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-theme');
 
   if (document.body.classList.contains('dark-theme')) {
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
+    svgUse.setAttribute(
+      'href',
+      '/to-do-list-js/src/img/symbol-defs.svg#icon-sun'
+    );
     localStorage.setItem('theme', 'dark');
     darkTheme();
   } else {
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
+    svgUse.setAttribute(
+      'href',
+      '/to-do-list-js/src/img/symbol-defs.svg#icon-moon'
+    );
     localStorage.setItem('theme', 'light');
     lightTheme();
   }
