@@ -186,7 +186,7 @@ function createElement(tasksArray, taskList) {
                 </svg></button
               ><button class="btn-list btn-delete">
                 <svg class="svg-list">
-                  <use href="./img/symbol-defs.svg#icon-delete"></use>
+                  <use href="../assets/delete.svg"></use>
                 </svg>
               </button>
             </div>
@@ -194,6 +194,7 @@ function createElement(tasksArray, taskList) {
     );
   });
 }
+// <use href="./img/symbol-defs.svg#icon-delete"></use>
 
 function editTask(taskId) {
   modalEdit.classList.remove('hidden');
