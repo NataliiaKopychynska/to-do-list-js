@@ -3,6 +3,7 @@ const searchInput = document.querySelector('.search-input');
 const selectBtn = document.querySelector('.btn-all');
 const tittle = document.querySelectorAll('.item-tittle');
 const addBtn = document.querySelector('.add-btn');
+const deleteList = document.querySelector('.delete-list');
 const modeToggle = document.querySelector('.mode-toggle');
 
 const svgUse = document.querySelector('.toggle-icon');
@@ -20,6 +21,8 @@ const cancelTaskEdit = document.querySelector('.cancel-edit');
 const modalDelete = document.querySelector('.delete-modal');
 const applyTaskDelete = document.querySelector('.delete-yes');
 const cancelTaskDelete = document.querySelector('.delete-no');
+
+const modalListDelete = document.querySelector('.delete-list-modal');
 
 const emptyImg = document.querySelector('.empty-element');
 const taskList = document.querySelector('.task-list');
@@ -51,6 +54,36 @@ emptyList();
 
 addBtn.addEventListener('click', () => {
   modalAdd.classList.remove('hidden');
+});
+
+deleteList.addEventListener('click', event => {
+  modalListDelete.classList.remove('hidden');
+
+  const deleteList = document.querySelector('.delete-list-btn');
+  const cancelDelete = document.querySelector('.cancel-delete-list-btn');
+  cancelDelete.addEventListener('click', () => {
+    console.log(5);
+    modalListDelete.classList.add('hidden');
+  });
+
+  deleteList.addEventListener('click', () => {
+    console.log(4);
+    tasksArray = [];
+    createElement(tasksArray, taskList);
+    localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+
+    modalListDelete.classList.add('hidden');
+  });
+
+  // if (event.target.classList.contains('delete-yes')) {
+  //   console.log(1);
+  //   taskList.innerHTML = '';
+  //   modalListDelete.classList.add('hidden');
+  // } else if (event.target.classList.contains('delete-no')) {
+  //   console.log(2);
+
+  //   modalListDelete.classList.add('hidden');
+  // }
 });
 
 modeToggle.addEventListener('click', () => {
@@ -197,18 +230,6 @@ function createElement(tasksArray, taskList) {
     );
   });
 }
-// </div>
-//             <div class="btn-container-add-delete">
-//               <button class="btn-list btn-edid"> edit
-//                 <svg class="svg-list">
-//                   <use href="../img/sprite.svg#icon-edit"></use>
-//                 </svg></button
-//               ><button class="btn-list btn-delete">delete
-//                 <svg class="svg-list">
-//                   <use href="to-do-list-js/src/assets/delete.svg"></use>
-//                 </svg>
-//               </button>
-//             </div>
 
 function editTask(taskId) {
   modalEdit.classList.remove('hidden');
