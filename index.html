@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
     <script type="module" crossorigin src="/to-do-list-js/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/to-do-list-js/assets/index-BzS8-h-D.css">
+    <link rel="stylesheet" crossorigin href="/to-do-list-js/assets/index-DtH5-rgV.css">
   </head>
   <body class="body body-night">
     <header class="header">
@@ -64,11 +64,14 @@
             </svg>
           </button>
         </div>
-        <button class="add-btn">
-          <svg class="add-svg">
-            <use href="/to-do-list-js/assets/symbol-defs-BZ1BJ_8H.svg#icon-add"></use>
-          </svg>
-        </button>
+        <div class="div-btn-add-d">
+          <button class="delete-list">Delete task-list</button>
+          <button class="add-btn">
+            <svg class="add-svg">
+              <use href="/to-do-list-js/assets/symbol-defs-BZ1BJ_8H.svg#icon-add"></use>
+            </svg>
+          </button>
+        </div>
 
         <!-- Tasks -->
         <ul class="task-list"></ul>
@@ -127,6 +130,17 @@
           <div class="btn-container">
             <button class="btn border-btn delete-yes">Yes</button
             ><button class="btn delete-no">No</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- DELETE-LIST Modal window -->
+      <div class="overflow-modal delete-list-modal hidden">
+        <div class="window-modal">
+          <h1 class="title">Do you have delete this list?</h1>
+          <div class="btn-container">
+            <button class="btn border-btn delete-list-btn">Yes</button
+            ><button class="btn cancel-delete-list-btn">No</button>
           </div>
         </div>
       </div>
