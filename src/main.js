@@ -182,11 +182,18 @@ function createElement(tasksArray, taskList) {
             <div class="btn-container-add-delete">
               <button class="btn-list btn-edid"> edit
                 <svg class="svg-list">
-                  <use href="../img/sprite.svg#icon-edit"></use>
+                  <symbol id="icon-edit" viewBox="0 0 32 32">
+      <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.778" d="M15.418 10.651 3.555 22.513v5.931h5.931l11.863-11.862m-5.931-5.931 4.256-4.256c.585-.586.879-.879 1.217-.989.298-.097.619-.097.916 0 .338.11.631.403 1.215.987l2.58 2.58c.587.587.881.881.991 1.22.097.298.097.619 0 .916-.11.338-.403.632-.99 1.218l-4.255 4.255m-5.93-5.931 5.931 5.931"/>
+    </symbol>
                 </svg></button
               ><button class="btn-list btn-delete">delete
                 <svg class="svg-list">
-                  <use href="to-do-list-js/src/assets/delete.svg"></use>
+                  <symbol id="icon-delete" viewBox="0 0 32 32">
+      <path stroke-width="1.778" d="M6.888 13.538a2.666 2.666 0 0 1 2.659-2.871h12.907a2.666 2.666 0 0 1 2.659 2.871l-.923 12A2.667 2.667 0 0 1 21.531 28H10.47a2.667 2.667 0 0 1-2.659-2.462l-.923-12z"/>
+      <path stroke-linecap="round" stroke-width="1.778" d="M26 6.667H6"/>
+      <path stroke-width="1.778" d="M13.333 4c0-.736.597-1.333 1.333-1.333h2.667c.736 0 1.333.597 1.333 1.333v2.667h-5.333V4z"/>
+      <path stroke-linecap="round" stroke-width="1.778" d="M18.667 16v6.667M13.333 16v6.667"/>
+    </symbol>
                 </svg>
               </button>
             </div>
@@ -194,7 +201,18 @@ function createElement(tasksArray, taskList) {
     );
   });
 }
-// <use href="./img/symbol-defs.svg#icon-delete"></use>
+// </div>
+//             <div class="btn-container-add-delete">
+//               <button class="btn-list btn-edid"> edit
+//                 <svg class="svg-list">
+//                   <use href="../img/sprite.svg#icon-edit"></use>
+//                 </svg></button
+//               ><button class="btn-list btn-delete">delete
+//                 <svg class="svg-list">
+//                   <use href="to-do-list-js/src/assets/delete.svg"></use>
+//                 </svg>
+//               </button>
+//             </div>
 
 function editTask(taskId) {
   modalEdit.classList.remove('hidden');
