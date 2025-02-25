@@ -31,17 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (localStorage.getItem('theme') === 'dark') {
     // svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
-    svgUse.setAttribute('href', '/to-do-list-js/img/symbol-defs.svg#icon-sun');
+    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
 
     // https://nataliiakopychynska.github.io/to-do-list-js/
     darkTheme();
   } else {
     // svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
-    svgUse.setAttribute('href', '/to-do-list-js/img/symbol-defs.svg#icon-moon');
+    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
 
     lightTheme();
   }
 });
+
+//
 
 let tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
 
@@ -58,11 +60,11 @@ modeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-theme');
 
   if (document.body.classList.contains('dark-theme')) {
-    svgUse.setAttribute('href', '/to-do-list-js/img/symbol-defs.svg#icon-sun');
+    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
     localStorage.setItem('theme', 'dark');
     darkTheme();
   } else {
-    svgUse.setAttribute('href', '/to-do-list-js/img/symbol-defs.svg#icon-moon');
+    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
     localStorage.setItem('theme', 'light');
     lightTheme();
   }
