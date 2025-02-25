@@ -4,6 +4,7 @@ const selectBtn = document.querySelector('.btn-all');
 const tittle = document.querySelectorAll('.item-tittle');
 const addBtn = document.querySelector('.add-btn');
 const modeToggle = document.querySelector('.mode-toggle');
+
 const svgUse = document.querySelector('.toggle-icon');
 
 const modalAdd = document.querySelector('.add-modal');
@@ -46,11 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 
 let tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
-
-if (tasksArray.length > 0) {
-  emptyImg.classList.add('hidden');
-  createElement(tasksArray, taskList);
-}
+emptyList();
 
 addBtn.addEventListener('click', () => {
   modalAdd.classList.remove('hidden');
@@ -148,9 +145,11 @@ function filterTasks(filter) {
       break;
     case 'complete':
       filteredTask = tasksArray.filter(task => task.completed);
+
       break;
     case 'incomplete':
       filteredTask = tasksArray.filter(task => !task.completed);
+
       break;
   }
   createElement(filteredTask, taskList);
@@ -180,23 +179,20 @@ function createElement(tasksArray, taskList) {
               </label>
             </div>
             <div class="btn-container-add-delete">
-              <button class="btn-list btn-edid"> edit
-                <svg class="svg-list">
-                  <symbol id="icon-edit" viewBox="0 0 32 32">
-      <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.778" d="M15.418 10.651 3.555 22.513v5.931h5.931l11.863-11.862m-5.931-5.931 4.256-4.256c.585-.586.879-.879 1.217-.989.298-.097.619-.097.916 0 .338.11.631.403 1.215.987l2.58 2.58c.587.587.881.881.991 1.22.097.298.097.619 0 .916-.11.338-.403.632-.99 1.218l-4.255 4.255m-5.93-5.931 5.931 5.931"/>
-    </symbol>
-                </svg></button
-              ><button class="btn-list btn-delete">delete
-                <svg class="svg-list">
-                  <symbol id="icon-delete" viewBox="0 0 32 32">
-      <path stroke-width="1.778" d="M6.888 13.538a2.666 2.666 0 0 1 2.659-2.871h12.907a2.666 2.666 0 0 1 2.659 2.871l-.923 12A2.667 2.667 0 0 1 21.531 28H10.47a2.667 2.667 0 0 1-2.659-2.462l-.923-12z"/>
-      <path stroke-linecap="round" stroke-width="1.778" d="M26 6.667H6"/>
-      <path stroke-width="1.778" d="M13.333 4c0-.736.597-1.333 1.333-1.333h2.667c.736 0 1.333.597 1.333 1.333v2.667h-5.333V4z"/>
-      <path stroke-linecap="round" stroke-width="1.778" d="M18.667 16v6.667M13.333 16v6.667"/>
-    </symbol>
-                </svg>
-              </button>
-            </div>
+          <button class="btn-list btn-edit">
+            <svg class="svg-list" viewBox="0 0 32 32">
+              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.778" d="M15.418 10.651 3.555 22.513v5.931h5.931l11.863-11.862m-5.931-5.931 4.256-4.256c.585-.586.879-.879 1.217-.989.298-.097.619-.097.916 0 .338.11.631.403 1.215.987l2.58 2.58c.587.587.881.881.991 1.22.097.298.097.619 0 .916-.11.338-.403.632-.99 1.218l-4.255 4.255m-5.93-5.931 5.931 5.931"/>
+            </svg>
+          </button>
+          <button class="btn-list btn-delete">
+            <svg class="svg-list" viewBox="0 0 32 32">
+              <path stroke-width="1.778" d="M6.888 13.538a2.666 2.666 0 0 1 2.659-2.871h12.907a2.666 2.666 0 0 1 2.659 2.871l-.923 12A2.667 2.667 0 0 1 21.531 28H10.47a2.667 2.667 0 0 1-2.659-2.462l-.923-12z"/>
+              <path stroke-linecap="round" stroke-width="1.778" d="M26 6.667H6"/>
+              <path stroke-width="1.778" d="M13.333 4c0-.736.597-1.333 1.333-1.333h2.667c.736 0 1.333.597 1.333 1.333v2.667h-5.333V4z"/>
+              <path stroke-linecap="round" stroke-width="1.778" d="M18.667 16v6.667M13.333 16v6.667"/>
+            </svg>
+          </button>
+        </div>
           </li>`
     );
   });
@@ -249,6 +245,7 @@ function deleteTask(taskId) {
   cancelTaskDelete.addEventListener('click', () => {
     modalDelete.classList.add('hidden');
   });
+  emptyList();
 }
 
 const hiddenElement = e => {
@@ -269,4 +266,11 @@ function darkTheme() {
 
 function lightTheme() {
   body.classList.remove('body-night');
+}
+
+function emptyList() {
+  if (tasksArray.length > 0) {
+    emptyImg.classList.add('hidden');
+    createElement(tasksArray, taskList);
+  }
 }
