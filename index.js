@@ -19,7 +19,7 @@
             <div class="btn-container-add-delete">
               <button class="btn-list btn-edid">
                 <svg class="svg-list">
-                  <use href="../assets/edit.svg"></use>
+                  <use href="/img/sprite.svg#icon-edit"></use>
                 </svg></button
               ><button class="btn-list btn-delete">
                 <svg class="svg-list">
