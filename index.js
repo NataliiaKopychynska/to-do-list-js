@@ -17,11 +17,11 @@
               </label>
             </div>
             <div class="btn-container-add-delete">
-              <button class="btn-list btn-edid">
+              <button class="btn-list btn-edid"> edit
                 <svg class="svg-list">
                   <use href="/img/sprite.svg#icon-edit"></use>
                 </svg></button
-              ><button class="btn-list btn-delete">
+              ><button class="btn-list btn-delete">delete
                 <svg class="svg-list">
                   <use href="./assets/delete.svg"></use>
                 </svg>
