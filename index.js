@@ -23,7 +23,7 @@
                 </svg></button
               ><button class="btn-list btn-delete">delete
                 <svg class="svg-list">
-                  <use href="./assets/delete.svg"></use>
+                  <use href="to-do-list-js/src/assets/delete.svg"></use>
                 </svg>
               </button>
             </div>
