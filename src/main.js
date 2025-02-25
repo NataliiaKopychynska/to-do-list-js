@@ -182,7 +182,7 @@ function createElement(tasksArray, taskList) {
             <div class="btn-container-add-delete">
               <button class="btn-list btn-edid">
                 <svg class="svg-list">
-                  <use href="./img/symbol-defs.svg#icon-edit"></use>
+                  <use href="./assets/checked.svg"></use>
                 </svg></button
               ><button class="btn-list btn-delete">
                 <svg class="svg-list">
