@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
     <script type="module" crossorigin src="/to-do-list-js/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/to-do-list-js/assets/index-DtH5-rgV.css">
+    <link rel="stylesheet" crossorigin href="/to-do-list-js/assets/index-D_8haJBg.css">
   </head>
   <body class="body body-night">
     <header class="header">
@@ -93,13 +93,17 @@
 
       <!-- ADD Modal window -->
       <div class="overflow-modal add-modal hidden">
-        <div class="window-modal">
+        <div class="window-modal add-window">
           <h1 class="title">New Note</h1>
-          <input
-            type="text "
-            class="input input-modal input-modal-add"
-            placeholder="Input your note..."
-          />
+          <div >
+            <input
+              type="text "
+              class="input input-modal input-modal-add"
+              placeholder="Input your note..."
+            />
+             <p class="error-message hidden">Please enter your task</p>
+          </div>
+
           <div class="btn-container">
             <button class="btn border-btn cancel">Cancel</button
             ><button class="btn apply">Apply</button>
@@ -109,7 +113,7 @@
 
       <!-- EDIT Modal window -->
       <div class="overflow-modal edit-modal hidden">
-        <div class="window-modal">
+        <div class="window-modal edit-window">
           <h1 class="title">Edit Note</h1>
           <input
             type="text "
@@ -125,7 +129,7 @@
 
       <!-- DELETE Modal window -->
       <div class="overflow-modal delete-modal hidden">
-        <div class="window-modal">
+        <div class="window-modal delete-window">
           <h1 class="title">Do you have delete this Note?</h1>
           <div class="btn-container">
             <button class="btn border-btn delete-yes">Yes</button
@@ -136,7 +140,7 @@
     </main>
     <!-- DELETE-LIST Modal window -->
       <div class="overflow-modal delete-list-modal hidden">
-        <div class="window-modal">
+        <div class="window-modal delete-list-window">
           <h1 class="title">Do you have delete this list?</h1>
           <div class="btn-container">
             <button class="btn border-btn delete-list-btn">Yes</button
