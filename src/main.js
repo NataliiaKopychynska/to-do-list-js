@@ -10,8 +10,6 @@ const svgUse = document.querySelector('.toggle-icon');
 
 const modalAdd = document.querySelector('.add-modal');
 const inputModal = document.querySelector('.input-modal-add');
-const applyTaskAdd = document.querySelector('.apply');
-const cancelBtn = document.querySelector('.cancel');
 
 const modalEdit = document.querySelector('.edit-modal');
 const inputModalEdit = document.querySelector('.input-modal-edit');
@@ -28,7 +26,7 @@ const emptyImg = document.querySelector('.empty-element');
 const taskList = document.querySelector('.task-list');
 
 // console.log(window.location.href);
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', e => {
   const savedFilter = localStorage.getItem('filter') || 'all';
   selectBtn.value = savedFilter;
   filterTasks(savedFilter);
@@ -54,36 +52,73 @@ emptyList();
 
 addBtn.addEventListener('click', () => {
   modalAdd.classList.remove('hidden');
+
+  modalAdd.addEventListener('click', e => {
+    const containerModal = document.querySelector('.add-window');
+    const applyTaskAdd = document.querySelector('.apply');
+    const cancelBtn = document.querySelector('.cancel');
+
+    if (!containerModal.contains(e.target)) {
+      hiddenElement(modalAdd);
+    }
+
+    applyTaskAdd.addEventListener('click', () => {
+      const inputError = document.querySelector('.error-message');
+      const inputValue = inputModal.value;
+      const idItem = Date.now();
+
+      if (inputValue.trim() === '') {
+        inputError.classList.remove('hidden');
+        return;
+      }
+
+      inputError.classList.add('hidden');
+
+      tasksArray.push({ text: inputValue, id: idItem, completed: false });
+      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+
+      hiddenElement(modalAdd);
+
+      if (tasksArray.length > 0) {
+        emptyImg.classList.add('hidden');
+      }
+
+      createElement(tasksArray, taskList);
+
+      inputModal.value = '';
+      console.log(inputValue);
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      hiddenElement(modalAdd);
+      inputModal.value = '';
+    });
+  });
 });
 
 deleteList.addEventListener('click', event => {
   modalListDelete.classList.remove('hidden');
 
+  const containerModal = document.querySelector('.delete-list-window');
   const deleteList = document.querySelector('.delete-list-btn');
   const cancelDelete = document.querySelector('.cancel-delete-list-btn');
-  cancelDelete.addEventListener('click', () => {
-    console.log(5);
-    modalListDelete.classList.add('hidden');
+
+  modalListDelete.addEventListener('click', event => {
+    if (!containerModal.contains(event.target)) {
+      hiddenElement(modalListDelete);
+    }
+    cancelDelete.addEventListener('click', () => {
+      hiddenElement(modalListDelete);
+    });
+
+    deleteList.addEventListener('click', () => {
+      tasksArray = [];
+      createElement(tasksArray, taskList);
+      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+
+      hiddenElement(modalListDelete);
+    });
   });
-
-  deleteList.addEventListener('click', () => {
-    console.log(4);
-    tasksArray = [];
-    createElement(tasksArray, taskList);
-    localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-
-    modalListDelete.classList.add('hidden');
-  });
-
-  // if (event.target.classList.contains('delete-yes')) {
-  //   console.log(1);
-  //   taskList.innerHTML = '';
-  //   modalListDelete.classList.add('hidden');
-  // } else if (event.target.classList.contains('delete-no')) {
-  //   console.log(2);
-
-  //   modalListDelete.classList.add('hidden');
-  // }
 });
 
 modeToggle.addEventListener('click', () => {
@@ -98,30 +133,6 @@ modeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', 'light');
     lightTheme();
   }
-});
-
-applyTaskAdd.addEventListener('click', () => {
-  const inputValue = inputModal.value;
-  const idItem = Date.now();
-  tasksArray.push({ text: inputValue, id: idItem, completed: false });
-  localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-  console.log(tasksArray);
-
-  hiddenElement(modalAdd);
-
-  if (tasksArray.length > 0) {
-    emptyImg.classList.add('hidden');
-  }
-
-  createElement(tasksArray, taskList);
-
-  inputModal.value = '';
-  console.log(inputValue);
-});
-
-cancelBtn.addEventListener('click', () => {
-  hiddenElement(modalAdd);
-  inputModal.value = '';
 });
 
 taskList.addEventListener('click', e => {
