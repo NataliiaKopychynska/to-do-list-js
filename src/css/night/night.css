@@ -22,4 +22,11 @@
   .input-checkbox:checked + .checkbox-label span .svg-chacckbox {
     fill: #f7f7f7;
   }
+  .select-dropdown {
+    background: #252525;
+    border: 1px solid #fcfcfc;
+  }
+  .select-dropdown li:hover {
+    background: #343434;
+  }
 }

@@ -35,7 +35,7 @@
             type="text"
             placeholder="Search note..."
           />
-          <div class="select-wrapper">
+          <!-- <div class="select-wrapper">
             <select class="btn btn-all">
               <option value="all">All</option>
               <option value="complete">Complete</option>
@@ -47,13 +47,35 @@
                 href="/img/symbol-defs.svg#icon-arrow-down"
               ></use>
             </svg>
+          </div> -->
+          <div class="select-wrapper">
+            <button class="btn select-btn">
+              <span class="selected">All</span>
+              <svg class="icon-all" width="12" height="8">
+                <use
+                  class="icon-all-svg"
+                  href="/img/symbol-defs.svg#icon-arrow-down"
+                ></use>
+              </svg>
+            </button>
+            <ul class="select-dropdown hidden">
+              <li data-value="all">All</li>
+              <li data-value="complete">Complete</li>
+              <li data-value="incomplete">Incomplete</li>
+            </ul>
           </div>
 
           <button class="btn mode-toggle">
-            <svg class="icon" width="22" height="22">
+            <svg class="icon icon-moon hidden" width="22" height="22">
               <use
                 class="toggle-icon"
-                href="/to-do-list-js/img/symbol-defs.svg#icon-moon"
+                href="/img/symbol-defs.svg#icon-moon"
+              ></use>
+            </svg>
+            <svg class="icon icon-sun hidden" width="22" height="22">
+              <use
+                class="toggle-icon"
+                href="/img/symbol-defs.svg#icon-sun"
               ></use>
             </svg>
           </button>
@@ -89,13 +111,13 @@
       <div class="overflow-modal add-modal hidden">
         <div class="window-modal add-window">
           <h1 class="title">New Note</h1>
-          <div >
+          <div>
             <input
               type="text "
               class="input input-modal input-modal-add"
               placeholder="Input your note..."
             />
-             <p class="error-message hidden">Please enter your task</p>
+            <p class="error-message hidden">Please enter your task</p>
           </div>
 
           <div class="btn-container">
@@ -131,8 +153,8 @@
           </div>
         </div>
       </div>
-    </main>
-    <!-- DELETE-LIST Modal window -->
+
+      <!-- DELETE-LIST Modal window -->
       <div class="overflow-modal delete-list-modal hidden">
         <div class="window-modal delete-list-window">
           <h1 class="title">Do you have delete this list?</h1>
@@ -140,6 +162,13 @@
             <button class="btn border-btn delete-list-btn">Yes</button
             ><button class="btn cancel-delete-list-btn">No</button>
           </div>
+        </div>
+      </div>
+
+      <!-- DELETE-LIST nothing delete Modal window -->
+      <div class="overflow-modal error-delete-list-modal hidden">
+        <div class="window-modal nothink-delete-window">
+          <h1 class="title">Nothing delete, your list is clean</h1>
         </div>
       </div>
     </main>

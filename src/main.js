@@ -1,137 +1,129 @@
 const body = document.body;
 const searchInput = document.querySelector('.search-input');
-const selectBtn = document.querySelector('.btn-all');
+
+const selectBtn = document.querySelector('.select-btn');
+const dropdown = document.querySelector('.select-dropdown');
+const selectedText = document.querySelector('.selected');
+
 const tittle = document.querySelectorAll('.item-tittle');
 const addBtn = document.querySelector('.add-btn');
 const deleteList = document.querySelector('.delete-list');
-const modeToggle = document.querySelector('.mode-toggle');
-
-const svgUse = document.querySelector('.toggle-icon');
-
-const modalAdd = document.querySelector('.add-modal');
-const inputModal = document.querySelector('.input-modal-add');
-
-const modalEdit = document.querySelector('.edit-modal');
-const inputModalEdit = document.querySelector('.input-modal-edit');
-const applyTaskEdit = document.querySelector('.apply-changes');
-const cancelTaskEdit = document.querySelector('.cancel-edit');
-
-const modalDelete = document.querySelector('.delete-modal');
-const applyTaskDelete = document.querySelector('.delete-yes');
-const cancelTaskDelete = document.querySelector('.delete-no');
-
-const modalListDelete = document.querySelector('.delete-list-modal');
-
 const emptyImg = document.querySelector('.empty-element');
 const taskList = document.querySelector('.task-list');
 
-// console.log(window.location.href);
+const modeToggle = document.querySelector('.mode-toggle');
+const iconSun = document.querySelector('.icon-sun');
+const iconMoon = document.querySelector('.icon-moon');
+
+const modalAdd = document.querySelector('.add-modal');
+const inputModal = document.querySelector('.input-modal-add');
+const modalEdit = document.querySelector('.edit-modal');
+const inputModalEdit = document.querySelector('.input-modal-edit');
+const modalDelete = document.querySelector('.delete-modal');
+const modalListDelete = document.querySelector('.delete-list-modal');
+
 document.addEventListener('DOMContentLoaded', e => {
   const savedFilter = localStorage.getItem('filter') || 'all';
   selectBtn.value = savedFilter;
+  selectedText.textContent = savedFilter;
   filterTasks(savedFilter);
 
-  if (localStorage.getItem('theme') === 'dark') {
-    // svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
-
-    // https://nataliiakopychynska.github.io/to-do-list-js/
-    darkTheme();
-  } else {
-    // svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
-
-    lightTheme();
-  }
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  setTheme(savedTheme);
 });
-
-//
 
 let tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
 emptyList();
 
+modeToggle.addEventListener('click', () => {
+  const newTheme = body.classList.contains('body-night') ? 'light' : 'dark';
+  setTheme(newTheme);
+});
+
 addBtn.addEventListener('click', () => {
   modalAdd.classList.remove('hidden');
 
-  modalAdd.addEventListener('click', e => {
-    const containerModal = document.querySelector('.add-window');
-    const applyTaskAdd = document.querySelector('.apply');
-    const cancelBtn = document.querySelector('.cancel');
+  modalAdd.addEventListener(
+    'click',
+    e => {
+      const containerModal = document.querySelector('.add-window');
+      const applyTaskAdd = document.querySelector('.apply');
+      const cancelBtn = document.querySelector('.cancel');
 
-    if (!containerModal.contains(e.target)) {
-      hiddenElement(modalAdd);
-    }
-
-    applyTaskAdd.addEventListener('click', () => {
-      const inputError = document.querySelector('.error-message');
-      const inputValue = inputModal.value;
-      const idItem = Date.now();
-
-      if (inputValue.trim() === '') {
-        inputError.classList.remove('hidden');
-        return;
+      if (!containerModal.contains(e.target)) {
+        hiddenElement(modalAdd);
       }
 
-      inputError.classList.add('hidden');
+      applyTaskAdd.addEventListener(
+        'click',
+        () => {
+          applyNewTask();
+        },
+        { once: true }
+      );
 
-      tasksArray.push({ text: inputValue, id: idItem, completed: false });
-      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+      inputModal.addEventListener(
+        'keydown',
+        e => {
+          if (e.key === 'Enter') {
+            applyNewTask();
+          }
+        },
+        { once: true }
+      );
 
-      hiddenElement(modalAdd);
+      cancelBtn.addEventListener(
+        'click',
+        () => {
+          cancelAddNewTask();
+        },
+        { once: true }
+      );
+    },
+    { once: true }
+  );
+});
 
-      if (tasksArray.length > 0) {
-        emptyImg.classList.add('hidden');
+deleteList.addEventListener('click', e => {
+  const errorDelete = document.querySelector('.error-delete-list-modal');
+
+  if (tasksArray.length > 0) {
+    modalListDelete.classList.remove('hidden');
+
+    const containerModal = document.querySelector('.delete-list-window');
+    const deleteListBTN = document.querySelector('.delete-list-btn');
+    const cancelDelete = document.querySelector('.cancel-delete-list-btn');
+
+    modalListDelete.addEventListener('click', e => {
+      if (!containerModal.contains(e.target)) {
+        hiddenElement(modalListDelete);
       }
 
-      createElement(tasksArray, taskList);
+      cancelDelete.addEventListener(
+        'click',
+        () => {
+          hiddenElement(modalListDelete);
+        },
+        { once: true }
+      );
 
-      inputModal.value = '';
-      console.log(inputValue);
+      deleteListBTN.addEventListener(
+        'click',
+        () => {
+          tasksArray = [];
+          createElement(tasksArray, taskList);
+          localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+
+          hiddenElement(modalListDelete);
+        },
+        { once: true }
+      );
     });
-
-    cancelBtn.addEventListener('click', () => {
-      hiddenElement(modalAdd);
-      inputModal.value = '';
-    });
-  });
-});
-
-deleteList.addEventListener('click', event => {
-  modalListDelete.classList.remove('hidden');
-
-  const containerModal = document.querySelector('.delete-list-window');
-  const deleteList = document.querySelector('.delete-list-btn');
-  const cancelDelete = document.querySelector('.cancel-delete-list-btn');
-
-  modalListDelete.addEventListener('click', event => {
-    if (!containerModal.contains(event.target)) {
-      hiddenElement(modalListDelete);
-    }
-    cancelDelete.addEventListener('click', () => {
-      hiddenElement(modalListDelete);
-    });
-
-    deleteList.addEventListener('click', () => {
-      tasksArray = [];
-      createElement(tasksArray, taskList);
-      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-
-      hiddenElement(modalListDelete);
-    });
-  });
-});
-
-modeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-theme');
-
-  if (document.body.classList.contains('dark-theme')) {
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-sun');
-    localStorage.setItem('theme', 'dark');
-    darkTheme();
   } else {
-    svgUse.setAttribute('href', './img/symbol-defs.svg#icon-moon');
-    localStorage.setItem('theme', 'light');
-    lightTheme();
+    errorDelete.classList.remove('hidden');
+    setTimeout(() => {
+      errorDelete.classList.add('hidden');
+    }, 1000);
   }
 });
 
@@ -142,7 +134,7 @@ taskList.addEventListener('click', e => {
   const taskId = Number(taskItem.dataset.id);
   console.log(taskId);
 
-  if (e.target.closest('.btn-edid')) {
+  if (e.target.closest('.btn-edit')) {
     editTask(taskId);
   }
 
@@ -151,29 +143,22 @@ taskList.addEventListener('click', e => {
   }
 
   if (e.target.closest('.checkbox-container')) {
-    const taskId = Number(taskItem.dataset.id);
-
     checkedToggle(taskId);
   }
 });
 
-selectBtn.addEventListener('change', e => {
-  const selectedValue = e.target.value;
-  localStorage.setItem('filter', selectedValue); // Зберігаємо фільтр у LS
-  filterTasks(selectedValue);
-});
-
 searchInput.addEventListener('input', e => {
+  const selectedValue = localStorage.getItem('filter') || 'all';
+  const filteredTasks = filterTasks(selectedValue);
+
   let searchValue = e.target.value.toLowerCase();
 
-  const filteredTask = tasksArray.filter(item => {
-    console.log(searchValue);
-
+  const filteredTask = filteredTasks.filter(item => {
     if (item.text.toLowerCase().includes(searchValue)) {
       return item;
     }
   });
-  // console.log(filteredTask);
+
   if (searchValue.trim() === '') {
     createElement(tasksArray, taskList);
   } else {
@@ -181,22 +166,40 @@ searchInput.addEventListener('input', e => {
   }
 });
 
-function filterTasks(filter) {
+selectBtn.addEventListener('click', () => {
+  dropdown.classList.toggle('hidden');
+  selectBtn.classList.toggle('open');
+});
+
+dropdown.addEventListener('click', e => {
+  const selectedValue = e.target.dataset.value;
+  filterTasks(selectedValue);
+
+  selectedText.textContent = selectedValue;
+  localStorage.setItem('filter', selectedValue);
+  dropdown.classList.toggle('hidden');
+  selectBtn.classList.toggle('open');
+});
+
+function filterTasks(selectedValue) {
   let filteredTask;
-  switch (filter) {
+  switch (selectedValue) {
     case 'all':
       filteredTask = tasksArray;
+
       break;
     case 'complete':
       filteredTask = tasksArray.filter(task => task.completed);
-
       break;
     case 'incomplete':
       filteredTask = tasksArray.filter(task => !task.completed);
-
       break;
+    default:
   }
+
+  localStorage.setItem('filter', selectedValue);
   createElement(filteredTask, taskList);
+  return filteredTask;
 }
 
 function createElement(tasksArray, taskList) {
@@ -215,8 +218,8 @@ function createElement(tasksArray, taskList) {
               />
               <label for="custom-checkbox" class="checkbox-label">
                 <span>
-                  <svg class="svg-chacckbox">
-                    <use href="./img/symbol-defs.svg#icon-Rectangle-18"></use>
+                  <svg class="svg-chacckbox" viewBox="0 0 32 32">
+                    <path  d="M10.667 31.25l-2.987 3.046 3.046 2.987 2.987-3.046-3.046-2.988zM13.654 28.204l-10.662-10.456-5.975 6.092 10.662 10.456 5.975-6.093zM28.013 7.468l-20.393 20.795 6.093 5.975 20.393-20.795-6.093-5.975z"></path>
                   </svg>
                 </span>
                 <p class="item-tittle">${item.text}</p>
@@ -242,41 +245,89 @@ function createElement(tasksArray, taskList) {
   });
 }
 
+function applyNewTask() {
+  const inputError = document.querySelector('.error-message');
+  const inputValue = inputModal.value;
+  const idItem = Date.now();
+
+  if (inputValue.trim() === '') {
+    inputError.classList.remove('hidden');
+    return;
+  }
+  inputError.classList.add('hidden');
+
+  tasksArray.push({ text: inputValue, id: idItem, completed: false });
+  localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+
+  hiddenElement(modalAdd);
+
+  if (tasksArray.length > 0) {
+    emptyImg.classList.add('hidden');
+  }
+
+  createElement(tasksArray, taskList);
+
+  inputModal.value = '';
+  console.log(inputValue);
+}
+
+function cancelAddNewTask() {
+  hiddenElement(modalAdd);
+  inputModal.value = '';
+}
+
 function editTask(taskId) {
   modalEdit.classList.remove('hidden');
+  const containerModal = document.querySelector('.edit-window');
+  const applyTaskEdit = document.querySelector('.apply-changes');
+  const cancelTaskEdit = document.querySelector('.cancel-edit');
 
   const arrayMap = tasksArray.find(item => item.id === taskId);
-  console.log(inputModalEdit.value);
-  // arrayMap.text = inputModalEdit.value;
   inputModalEdit.value = arrayMap.text;
 
-  applyTaskEdit.addEventListener('click', e => {
-    const arrayFindElement = tasksArray.find(item => item.id === taskId);
-    arrayFindElement.text = inputModalEdit.value;
+  modalEdit.addEventListener('click', e => {
+    if (!containerModal.contains(e.target)) {
+      hiddenElement(modalEdit);
+    }
 
-    localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-    createElement(tasksArray, taskList);
-    modalEdit.classList.add('hidden');
-  });
+    applyTaskEdit.addEventListener('click', e => {
+      const arrayFindElement = tasksArray.find(item => item.id === taskId);
+      arrayFindElement.text = inputModalEdit.value;
 
-  cancelTaskEdit.addEventListener('click', () => {
-    modalEdit.classList.add('hidden');
+      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+      createElement(tasksArray, taskList);
+      modalEdit.classList.add('hidden');
+    });
+
+    cancelTaskEdit.addEventListener('click', () => {
+      modalEdit.classList.add('hidden');
+    });
   });
 }
 function deleteTask(taskId) {
   modalDelete.classList.remove('hidden');
+  const containerModal = document.querySelector('.delete-window');
+  const applyTaskDelete = document.querySelector('.delete-yes');
+  const cancelTaskDelete = document.querySelector('.delete-no');
 
-  applyTaskDelete.addEventListener('click', () => {
-    const findDeleteElement = tasksArray.filter(item => item.id !== taskId);
-    tasksArray = findDeleteElement;
-    localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-    createElement(tasksArray, taskList);
-    modalDelete.classList.add('hidden');
+  modalDelete.addEventListener('click', e => {
+    if (!containerModal.contains(e.target)) {
+      hiddenElement(modalDelete);
+    }
+
+    applyTaskDelete.addEventListener('click', () => {
+      const findDeleteElement = tasksArray.filter(item => item.id !== taskId);
+      tasksArray = findDeleteElement;
+      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+      createElement(tasksArray, taskList);
+      modalDelete.classList.add('hidden');
+    });
+
+    cancelTaskDelete.addEventListener('click', () => {
+      modalDelete.classList.add('hidden');
+    });
   });
 
-  cancelTaskDelete.addEventListener('click', () => {
-    modalDelete.classList.add('hidden');
-  });
   emptyList();
 }
 
@@ -288,16 +339,22 @@ function checkedToggle(taskId) {
   const task = tasksArray.find(item => item.id === taskId);
   task.completed = !task.completed;
 
+  createElement(tasksArray, taskList);
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-  filterTasks('all');
+  filterTasks();
 }
 
-function darkTheme() {
-  body.classList.add('body-night');
-}
-
-function lightTheme() {
-  body.classList.remove('body-night');
+function setTheme(theme) {
+  if (theme === 'dark') {
+    body.classList.add('body-night');
+    iconMoon.classList.add('hidden');
+    iconSun.classList.remove('hidden');
+  } else if (theme === 'light') {
+    body.classList.remove('body-night');
+    iconMoon.classList.remove('hidden');
+    iconSun.classList.add('hidden');
+  }
+  localStorage.setItem('theme', theme);
 }
 
 function emptyList() {

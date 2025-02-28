@@ -1,5 +1,5 @@
 .todo-list {
-  margin-top: 16px;
+  margin-top: 88px;
 }
 
 .title {
@@ -61,7 +61,59 @@
 .select-wrapper {
   position: relative;
   display: inline-block;
+  width: 150px;
 }
+
+/*  */
+
+.select-btn {
+  width: 100%;
+  padding: 10px 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.icon-all {
+  transition: transform 0.3s;
+}
+
+.select-btn.open .icon-all {
+  transform: rotate(180deg);
+}
+
+.select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 5px 0;
+  z-index: 10;
+}
+
+.select-dropdown.hidden {
+  display: none;
+}
+
+.select-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.select-dropdown li:hover {
+  background: #f0f0f0;
+}
+/*  */
 
 .btn-all {
   padding: 10px 15px;
@@ -134,7 +186,7 @@
 
 @media only screen and (min-width: 768px) {
   .todo-list {
-    margin-top: 24px;
+    margin-top: 88px;
   }
   .container-serch {
     flex-wrap: nowrap;
@@ -146,11 +198,11 @@
 
 @media only screen and (min-width: 1200px) {
   .todo-list {
-    margin-top: 40px;
+    margin-top: 104px;
   }
 
   .container-serch {
-    margin-top: 20px;
+    margin-top: px;
     justify-content: center;
     gap: 16px;
   }
