@@ -43,89 +43,81 @@ modeToggle.addEventListener('click', () => {
 addBtn.addEventListener('click', () => {
   modalAdd.classList.remove('hidden');
 
-  modalAdd.addEventListener(
-    'click',
-    e => {
-      const containerModal = document.querySelector('.add-window');
-      const applyTaskAdd = document.querySelector('.apply');
-      const cancelBtn = document.querySelector('.cancel');
+  modalAdd.addEventListener('click', e => {
+    const containerModal = document.querySelector('.add-window');
+    const applyTaskAdd = document.querySelector('.apply');
+    const cancelBtn = document.querySelector('.cancel');
 
-      if (!containerModal.contains(e.target)) {
-        hiddenElement(modalAdd);
-      }
+    if (!containerModal.contains(e.target)) {
+      hiddenElement(modalAdd);
+    }
 
-      applyTaskAdd.addEventListener(
-        'click',
-        () => {
-          applyNewTask();
-        },
-        { once: true }
-      );
-
-      inputModal.addEventListener(
-        'keydown',
-        e => {
-          if (e.key === 'Enter') {
-            applyNewTask();
-          }
-        },
-        { once: true }
-      );
-
-      cancelBtn.addEventListener(
-        'click',
-        () => {
-          cancelAddNewTask();
-        },
-        { once: true }
-      );
-    },
-    { once: true }
-  );
-});
-
-deleteList.addEventListener('click', e => {
-  const errorDelete = document.querySelector('.error-delete-list-modal');
-
-  if (tasksArray.length > 0) {
-    modalListDelete.classList.remove('hidden');
-
-    const containerModal = document.querySelector('.delete-list-window');
-    const deleteListBTN = document.querySelector('.delete-list-btn');
-    const cancelDelete = document.querySelector('.cancel-delete-list-btn');
-
-    modalListDelete.addEventListener('click', e => {
-      if (!containerModal.contains(e.target)) {
-        hiddenElement(modalListDelete);
-      }
-
-      cancelDelete.addEventListener(
-        'click',
-        () => {
-          hiddenElement(modalListDelete);
-        },
-        { once: true }
-      );
-
-      deleteListBTN.addEventListener(
-        'click',
-        () => {
-          tasksArray = [];
-          createElement(tasksArray, taskList);
-          localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-
-          hiddenElement(modalListDelete);
-        },
-        { once: true }
-      );
+    applyTaskAdd.addEventListener('click', () => {
+      applyNewTask();
     });
-  } else {
-    errorDelete.classList.remove('hidden');
-    setTimeout(() => {
-      errorDelete.classList.add('hidden');
-    }, 1000);
-  }
+
+    inputModal.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        applyNewTask();
+      }
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      cancelAddNewTask();
+    });
+  });
 });
+
+deleteList.addEventListener(
+  'click',
+  e => {
+    const errorDelete = document.querySelector('.error-delete-list-modal');
+
+    if (tasksArray.length > 0) {
+      modalListDelete.classList.remove('hidden');
+
+      const containerModal = document.querySelector('.delete-list-window');
+      const deleteListBTN = document.querySelector('.delete-list-btn');
+      const cancelDelete = document.querySelector('.cancel-delete-list-btn');
+
+      modalListDelete.addEventListener(
+        'click',
+        e => {
+          if (!containerModal.contains(e.target)) {
+            hiddenElement(modalListDelete);
+          }
+
+          cancelDelete.addEventListener(
+            'click',
+            () => {
+              hiddenElement(modalListDelete);
+            },
+            { once: true }
+          );
+
+          deleteListBTN.addEventListener(
+            'click',
+            () => {
+              tasksArray = [];
+              createElement(tasksArray, taskList);
+              localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+
+              hiddenElement(modalListDelete);
+            },
+            { once: true }
+          );
+        },
+        { once: true }
+      );
+    } else {
+      errorDelete.classList.remove('hidden');
+      setTimeout(() => {
+        errorDelete.classList.add('hidden');
+      }, 1000);
+    }
+  },
+  { once: true }
+);
 
 taskList.addEventListener('click', e => {
   const taskItem = e.target.closest('.task-container');
@@ -195,6 +187,7 @@ function filterTasks(selectedValue) {
       filteredTask = tasksArray.filter(task => !task.completed);
       break;
     default:
+      return [];
   }
 
   localStorage.setItem('filter', selectedValue);
@@ -285,24 +278,28 @@ function editTask(taskId) {
   const arrayMap = tasksArray.find(item => item.id === taskId);
   inputModalEdit.value = arrayMap.text;
 
-  modalEdit.addEventListener('click', e => {
-    if (!containerModal.contains(e.target)) {
-      hiddenElement(modalEdit);
-    }
+  modalEdit.addEventListener(
+    'click',
+    e => {
+      if (!containerModal.contains(e.target)) {
+        hiddenElement(modalEdit);
+      }
 
-    applyTaskEdit.addEventListener('click', e => {
-      const arrayFindElement = tasksArray.find(item => item.id === taskId);
-      arrayFindElement.text = inputModalEdit.value;
+      applyTaskEdit.addEventListener('click', e => {
+        const arrayFindElement = tasksArray.find(item => item.id === taskId);
+        arrayFindElement.text = inputModalEdit.value;
 
-      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-      createElement(tasksArray, taskList);
-      modalEdit.classList.add('hidden');
-    });
+        localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+        createElement(tasksArray, taskList);
+        modalEdit.classList.add('hidden');
+      });
 
-    cancelTaskEdit.addEventListener('click', () => {
-      modalEdit.classList.add('hidden');
-    });
-  });
+      cancelTaskEdit.addEventListener('click', () => {
+        modalEdit.classList.add('hidden');
+      });
+    },
+    { once: true }
+  );
 }
 function deleteTask(taskId) {
   modalDelete.classList.remove('hidden');
@@ -310,23 +307,27 @@ function deleteTask(taskId) {
   const applyTaskDelete = document.querySelector('.delete-yes');
   const cancelTaskDelete = document.querySelector('.delete-no');
 
-  modalDelete.addEventListener('click', e => {
-    if (!containerModal.contains(e.target)) {
-      hiddenElement(modalDelete);
-    }
+  modalDelete.addEventListener(
+    'click',
+    e => {
+      if (!containerModal.contains(e.target)) {
+        hiddenElement(modalDelete);
+      }
 
-    applyTaskDelete.addEventListener('click', () => {
-      const findDeleteElement = tasksArray.filter(item => item.id !== taskId);
-      tasksArray = findDeleteElement;
-      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-      createElement(tasksArray, taskList);
-      modalDelete.classList.add('hidden');
-    });
+      applyTaskDelete.addEventListener('click', () => {
+        const findDeleteElement = tasksArray.filter(item => item.id !== taskId);
+        tasksArray = findDeleteElement;
+        localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+        createElement(tasksArray, taskList);
+        modalDelete.classList.add('hidden');
+      });
 
-    cancelTaskDelete.addEventListener('click', () => {
-      modalDelete.classList.add('hidden');
-    });
-  });
+      cancelTaskDelete.addEventListener('click', () => {
+        modalDelete.classList.add('hidden');
+      });
+    },
+    { once: true }
+  );
 
   emptyList();
 }
